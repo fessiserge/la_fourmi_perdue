@@ -6,6 +6,7 @@ func _ready() -> void:
 	%InstructionsButton.pressed.connect(_on_instructions)
 	%ResultatsButton.pressed.connect(_on_resultats)
 	%QuitterButton.pressed.connect(_on_quitter)
+	%JouerButton.grab_focus()
 
 func _on_jouer() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
