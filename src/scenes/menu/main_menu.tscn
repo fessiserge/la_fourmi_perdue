@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ceyhuxl6hw3nt"]
+
+[node name="MainMenu" type="Control" unique_id=909580891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1368652889]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1309520374]
+layout_mode = 2
+
+[node name="Titre" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1045984584]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "La fourmi perdue
+"
+horizontal_alignment = 1
