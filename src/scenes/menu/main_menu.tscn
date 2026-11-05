@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ceyhuxl6hw3nt"]
 
+[ext_resource type="Script" uid="uid://b86kyi5b414qy" path="res://scripts/menus/main_menu.gd" id="1_nl8w3"]
+
 [node name="MainMenu" type="Control" unique_id=909580891]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nl8w3")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1368652889]
 layout_mode = 1
@@ -25,3 +28,29 @@ theme_override_font_sizes/font_size = 48
 text = "La fourmi perdue
 "
 horizontal_alignment = 1
+
+[node name="JouerButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=270012501]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Jouer"
+
+[node name="ConfigButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1347059415]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Configuration"
+
+[node name="InstructionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1234884612]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Instructions"
+
+[node name="ResultatsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1239712643]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Meilleurs résultats"
+
+[node name="QuitterButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=126064944]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quitter
+"
