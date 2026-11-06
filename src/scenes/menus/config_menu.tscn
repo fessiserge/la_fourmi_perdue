@@ -38,6 +38,21 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=911310706]
 layout_mode = 2
 
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1178709113]
+layout_mode = 2
+text = "Difficulté"
+
+[node name="DifficulteOption" type="OptionButton" parent="CenterContainer/VBoxContainer" unique_id=923374293]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Facile"
+popup/item_0/id = 0
+popup/item_1/text = "Normale"
+popup/item_1/id = 1
+popup/item_2/text = "Difficile"
+popup/item_2/id = 2
+
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=903167729]
 layout_mode = 2
 text = "Musique
