@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://cnap5mpqq3l15"]
 
+[ext_resource type="Texture2D" uid="uid://cf3lsiq657v4l" path="res://assets/fond_secondaire.png" id="1_p43of"]
+[ext_resource type="Script" uid="uid://ba203gp8s1qsy" path="res://scripts/menus/instructions_menu.gd" id="1_tsjed"]
+
 [node name="InstructionsMenu" type="Control" unique_id=592359879]
 layout_mode = 3
 anchors_preset = 15
@@ -7,9 +10,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tsjed")
 
-[node name="Label" type="Label" parent="." unique_id=1688660566]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="TextureRect" type="TextureRect" parent="." unique_id=957921500]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p43of")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1371141074]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1306194560]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=806136055]
+layout_mode = 2
+
+[node name="Titre" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=912576418]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Texte" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=220934306]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Tu es une petite fourmi perdue dans la fourmilière.
+
+But du jeu :
+Ramasse les miettes et rapporte-les à la reine avant la fin du chrono.
+Attention aux araignées ! Si elles te touchent, tu perds une vie.
+Tu as 3 vies.
+
+Contrôles :
+Se déplacer : W A S D ou flèches
+Pause : P, Échap ou Start
+Couper le son : M"
+horizontal_alignment = 1
+
+[node name="RetourButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=264380483]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retour"
