@@ -21,6 +21,7 @@ func _on_effets_changed(valeur: float) -> void:
 	AudioServer.set_bus_volume_db(bus_effets, linear_to_db(valeur))
 
 func _on_retour() -> void:
+	GameManager.sauvegarder()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
 func _on_difficulte_changed(index: int) -> void:
