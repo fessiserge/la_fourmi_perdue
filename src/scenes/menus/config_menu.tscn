@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://d2jsi0x1vxdfm"]
 
+[ext_resource type="Script" uid="uid://epg3jhy7wqpv" path="res://scripts/menus/config_menu.gd" id="1_2pjct"]
+[ext_resource type="Texture2D" uid="uid://cf3lsiq657v4l" path="res://assets/fond_secondaire.png" id="2_kyd8d"]
+
 [node name="ConfigMenu" type="Control" unique_id=1780032412]
 layout_mode = 3
 anchors_preset = 15
@@ -7,9 +10,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2pjct")
 
-[node name="Label" type="Label" parent="." unique_id=1849443451]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Configuration"
+[node name="TextureRect" type="TextureRect" parent="." unique_id=45668466]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kyd8d")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1879101994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=911310706]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=903167729]
+layout_mode = 2
+text = "Musique
+"
+
+[node name="MusiqueSlider" type="HSlider" parent="CenterContainer/VBoxContainer" unique_id=2038148231]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer" unique_id=168417046]
+layout_mode = 2
+text = "Effets"
+
+[node name="EffetsSlider" type="HSlider" parent="CenterContainer/VBoxContainer" unique_id=1589084078]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="RetourButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1077812395]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Retour"

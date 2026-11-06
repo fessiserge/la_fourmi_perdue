@@ -15,6 +15,10 @@ run/main_scene="uid://ceyhuxl6hw3nt"
 config/features=PackedStringArray("4.7")
 config/icon="res://assets/icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://1pk1noussxed"
+
 [input]
 
 up={
