@@ -1,14 +1,26 @@
 [gd_scene format=3 uid="uid://djrxp64qvd7sy"]
 
+[ext_resource type="Texture2D" uid="uid://cinxy1abuxro6" path="res://assets/sprites/tileset/tuiles_temporaires.png" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dqrwfh1rw46dh" path="res://scenes/fourmi.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://ja7hv2vds5kg" path="res://scripts/labyrinthe.gd" id="2_lbhrr"]
 
-[node name="Game" type="Control" unique_id=1693225985]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
+texture = ExtResource("1_lnu2h")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_wygev"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_iywne")
+
+[node name="Game" type="Node2D" unique_id=1697092829]
+
+[node name="Labyrinthe" type="TileMapLayer" parent="." unique_id=385174954]
+tile_set = SubResource("TileSet_wygev")
+script = ExtResource("2_lbhrr")
 
 [node name="Fourmi" parent="." unique_id=1828544712 instance=ExtResource("1_uwrxv")]
 position = Vector2(364, 194)
