@@ -37,3 +37,4 @@ func creuser(depart: Vector2i) -> void:
 			set_cell(case_actuelle * 2 + Vector2i.ONE + (suivante - case_actuelle), 0, SOL)
 			set_cell(suivante * 2 + Vector2i.ONE, 0, SOL)
 			pile.push_back(suivante)
+ 
