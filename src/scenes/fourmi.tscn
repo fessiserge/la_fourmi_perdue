@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bgheoecfaquq5" path="res://scripts/fourmi.gd" id="1_r3ftg"]
 [ext_resource type="Texture2D" uid="uid://b8g5geixr52ko" path="res://assets/icon.svg" id="2_lb8uj"]
+[ext_resource type="Script" uid="uid://b7m8pwm0epkma" path="res://scripts/states/state_machine.gd" id="3_nlrap"]
+[ext_resource type="Script" uid="uid://bvjtkivxljkrg" path="res://scripts/states/fourmi_idle.gd" id="4_0o2nw"]
+[ext_resource type="Script" uid="uid://bgvhshmapa1x" path="res://scripts/states/fourmi_walk.gd" id="5_0o2nw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wygev"]
 radius = 14.0
@@ -17,3 +20,15 @@ texture = ExtResource("2_lb8uj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=748023159]
 shape = SubResource("CircleShape2D_wygev")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1564653255 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_nlrap")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2025305602 node_paths=PackedStringArray("fourmi")]
+script = ExtResource("4_0o2nw")
+fourmi = NodePath("../..")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=581322968 node_paths=PackedStringArray("fourmi")]
+script = ExtResource("5_0o2nw")
+fourmi = NodePath("../..")
