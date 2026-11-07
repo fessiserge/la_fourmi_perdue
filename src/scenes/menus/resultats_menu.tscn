@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://24fk5weiskmu"]
 
 [ext_resource type="Texture2D" uid="uid://cf3lsiq657v4l" path="res://assets/fond_secondaire.png" id="1_8ojtg"]
+[ext_resource type="Script" uid="uid://dme6e387nyyrw" path="res://scripts/menus/resultats_menu.gd" id="1_byt47"]
 
 [node name="ResultatsMenu" type="Control" unique_id=1327617181]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_byt47")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=167466349]
 layout_mode = 1
@@ -46,3 +48,4 @@ text = "Aucun résultat pour l'instant"
 [node name="RetourButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1625761900]
 unique_name_in_owner = true
 layout_mode = 2
+text = "Retour"
