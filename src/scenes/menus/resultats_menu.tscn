@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://24fk5weiskmu"]
 
+[ext_resource type="Texture2D" uid="uid://cf3lsiq657v4l" path="res://assets/fond_secondaire.png" id="1_8ojtg"]
+
 [node name="ResultatsMenu" type="Control" unique_id=1327617181]
 layout_mode = 3
 anchors_preset = 15
@@ -8,8 +10,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="." unique_id=368317465]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="TextureRect" type="TextureRect" parent="." unique_id=167466349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8ojtg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1389396655]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=678233479]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1693663553]
+layout_mode = 2
+
+[node name="Titre" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1146876756]
+layout_mode = 2
 text = "Meilleurs résultats"
+
+[node name="Liste" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1490324941]
+layout_mode = 2
+text = "Aucun résultat pour l'instant"
+
+[node name="RetourButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1625761900]
+unique_name_in_owner = true
+layout_mode = 2
