@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djgjmplkvyddr"]
+
+[ext_resource type="Texture2D" uid="uid://b8w7rkxgy54ju" path="res://assets/sprites/atlas_fourmi/decorations/reine_fourmiliere.png" id="1_uvgvv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wygev"]
+radius = 14.0
+
+[node name="Reine" type="Area2D" unique_id=1810853091]
+collision_layer = 8
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1090369566]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_uvgvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1448273519]
+shape = SubResource("CircleShape2D_wygev")

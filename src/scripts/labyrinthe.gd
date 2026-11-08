@@ -6,6 +6,10 @@ const MUR := Vector2i(1, 0)
 @export var largeur := 17
 @export var hauteur := 9
 
+var case_depart := Vector2i.ZERO
+var case_reine := Vector2i.ZERO
+var distance_max := 0
+
 func _ready() -> void:
 	generer()
 
@@ -37,4 +41,9 @@ func creuser(depart: Vector2i) -> void:
 			set_cell(case_actuelle * 2 + Vector2i.ONE + (suivante - case_actuelle), 0, SOL)
 			set_cell(suivante * 2 + Vector2i.ONE, 0, SOL)
 			pile.push_back(suivante)
- 
+			if pile.size() > distance_max:
+				distance_max = pile.size()
+				case_reine = suivante
+			
+func position_de(case_lab: Vector2i) -> Vector2:
+	return to_global(map_to_local(case_lab * 2 + Vector2i.ONE))
