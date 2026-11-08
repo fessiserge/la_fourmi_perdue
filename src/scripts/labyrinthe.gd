@@ -11,6 +11,16 @@ var case_reine := Vector2i.ZERO
 var distance_max := 0
 
 func _ready() -> void:
+	match GameManager.difficulte:
+		0:
+			largeur = 9
+			hauteur = 5
+		1:
+			largeur = 17
+			hauteur = 9
+		2:
+			largeur = 35
+			hauteur = 10
 	generer()
 
 func generer() -> void:
