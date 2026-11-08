@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dqrwfh1rw46dh" path="res://scenes/fourmi.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://ja7hv2vds5kg" path="res://scripts/labyrinthe.gd" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://djgjmplkvyddr" path="res://scenes/reine.tscn" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://dptu5biruux3t" path="res://scripts/reine.gd" id="5_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("1_lnu2h")
@@ -27,6 +28,7 @@ script = ExtResource("2_lbhrr")
 
 [node name="Reine" parent="." unique_id=1810853091 instance=ExtResource("4_p57ef")]
 position = Vector2(440, 173)
+script = ExtResource("5_p57ef")
 
 [node name="Fourmi" parent="." unique_id=1828544712 instance=ExtResource("1_uwrxv")]
 position = Vector2(364, 194)

@@ -7,6 +7,7 @@ func _ready() -> void:
 	var cam = $Camera2D
 	$Fourmi.position = lab.position_de(lab.case_depart)
 	$Reine.position = lab.position_de(lab.case_reine)
+	$Reine.fourmi_arrivee.connect(_on_victoire)
 
 	var taille := Vector2(lab.largeur * 2 + 1, lab.hauteur * 2 + 1) * 32
 	var ecran := get_viewport_rect().size
@@ -40,3 +41,6 @@ func apercu(taille: Vector2, vue: Vector2) -> void:
 func _process(delta: float) -> void:
 	if suivre:
 		$Camera2D.position = $Fourmi.position
+		
+func _on_victoire() -> void:
+	get_tree().change_scene_to_file.call_deferred("res://scenes/menus/victoire.tscn")
