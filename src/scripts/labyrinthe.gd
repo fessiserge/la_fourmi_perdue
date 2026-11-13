@@ -57,3 +57,49 @@ func creuser(depart: Vector2i) -> void:
 			
 func position_de(case_lab: Vector2i) -> Vector2:
 	return to_global(map_to_local(case_lab * 2 + Vector2i.ONE))
+	
+func est_sol(t: Vector2i) -> bool:
+	return get_cell_atlas_coords(t) == SOL
+
+func tuile_de(pos: Vector2) -> Vector2i:
+	return local_to_map(to_local(pos))
+
+func centre_de(t: Vector2i) -> Vector2:
+	return to_global(map_to_local(t))
+
+func estimation(a: Vector2i, b: Vector2i) -> int:
+	return abs(a.x - b.x) + abs(a.y - b.y)
+
+func chemin(depart: Vector2i, arrivee: Vector2i) -> Array[Vector2i]:
+	var ouverts: Array[Vector2i] = [depart]
+	var venu_de := {}
+	var g := {depart: 0}
+	var f := {depart: estimation(depart, arrivee)}
+
+	while not ouverts.is_empty():
+		var courant: Vector2i = ouverts[0]
+		for t in ouverts:
+			if f[t] < f[courant]:
+				courant = t
+
+		if courant == arrivee:
+			var resultat: Array[Vector2i] = [courant]
+			while venu_de.has(courant):
+				courant = venu_de[courant]
+				resultat.push_front(courant)
+			return resultat
+
+		ouverts.erase(courant)
+		for dir in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+			var v: Vector2i = courant + dir
+			if not est_sol(v):
+				continue
+			var nouveau_g: int = g[courant] + 1
+			if nouveau_g < g.get(v, 999999):
+				venu_de[v] = courant
+				g[v] = nouveau_g
+				f[v] = nouveau_g + estimation(v, arrivee)
+				if not ouverts.has(v):
+					ouverts.append(v)
+
+	return []

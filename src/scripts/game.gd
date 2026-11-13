@@ -1,5 +1,5 @@
 extends Node2D
-
+const ARAIGNEE = preload("res://scenes/araignee.tscn")
 var suivre := false
 
 func _ready() -> void:
@@ -25,6 +25,11 @@ func _ready() -> void:
 		cam.zoom = Vector2(zoom, zoom)
 		await apercu(taille, ecran / zoom)
 		suivre = true
+	var araignee = ARAIGNEE.instantiate()
+	araignee.labyrinthe = lab
+	araignee.cible = $Fourmi
+	araignee.position = lab.position_de(lab.case_reine)
+	add_child(araignee)
 
 func apercu(taille: Vector2, vue: Vector2) -> void:
 	var cam = $Camera2D

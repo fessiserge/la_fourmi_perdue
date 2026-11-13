@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cipti6s62i0km"]
+
+[ext_resource type="Script" uid="uid://dtnne1angyiam" path="res://scripts/araignee.gd" id="1_853d5"]
+[ext_resource type="Texture2D" uid="uid://cxb3porl8tnem" path="res://assets/sprites/atlas_fourmi/decorations/araignee.png" id="1_covi8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wygev"]
+radius = 12.0
+
+[node name="Araignee" type="CharacterBody2D" unique_id=2000916683]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_853d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=552516046]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_covi8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451514910]
+shape = SubResource("CircleShape2D_wygev")
