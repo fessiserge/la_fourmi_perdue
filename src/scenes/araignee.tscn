@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dtnne1angyiam" path="res://scripts/araignee.gd" id="1_853d5"]
 [ext_resource type="Texture2D" uid="uid://cxb3porl8tnem" path="res://assets/sprites/atlas_fourmi/decorations/araignee.png" id="1_covi8"]
+[ext_resource type="Script" uid="uid://b7m8pwm0epkma" path="res://scripts/states/state_machine.gd" id="3_gvk3d"]
+[ext_resource type="Script" uid="uid://dw1awldlw7f8y" path="res://scripts/states/araignee_patrouille.gd" id="4_bs3fa"]
+[ext_resource type="Script" uid="uid://dosujk4l0cgba" path="res://scripts/states/araignee_poursuite.gd" id="5_k7uft"]
+[ext_resource type="Script" uid="uid://ue8roiehpfjk" path="res://scripts/states/araignee_etourdie.gd" id="6_gnqf8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wygev"]
 radius = 12.0
@@ -17,3 +21,22 @@ texture = ExtResource("1_covi8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1451514910]
 shape = SubResource("CircleShape2D_wygev")
+
+[node name="Vue" type="RayCast2D" parent="." unique_id=646927688]
+collision_mask = 3
+
+[node name="StateMachine" type="Node" parent="." unique_id=713408537 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_gvk3d")
+initial_state = NodePath("Patrouille")
+
+[node name="Patrouille" type="Node" parent="StateMachine" unique_id=965861449 node_paths=PackedStringArray("araignee")]
+script = ExtResource("4_bs3fa")
+araignee = NodePath("../..")
+
+[node name="Poursuite" type="Node" parent="StateMachine" unique_id=950866167 node_paths=PackedStringArray("araignee")]
+script = ExtResource("5_k7uft")
+araignee = NodePath("../..")
+
+[node name="Etourdie" type="Node" parent="StateMachine" unique_id=1574569071 node_paths=PackedStringArray("araignee")]
+script = ExtResource("6_gnqf8")
+araignee = NodePath("../..")

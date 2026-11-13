@@ -26,7 +26,7 @@ func _ready() -> void:
 		await apercu(taille, ecran / zoom)
 		suivre = true
 	var araignee = ARAIGNEE.instantiate()
-	araignee.labyrinthe = lab
+	araignee.labyrinthe = lab	
 	araignee.cible = $Fourmi
 	araignee.position = lab.position_de(lab.case_reine)
 	add_child(araignee)

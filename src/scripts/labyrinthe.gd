@@ -103,3 +103,6 @@ func chemin(depart: Vector2i, arrivee: Vector2i) -> Array[Vector2i]:
 					ouverts.append(v)
 
 	return []
+func tuile_au_hasard() -> Vector2i:
+	var case_lab := Vector2i(randi_range(0, largeur - 1), randi_range(0, hauteur - 1))
+	return case_lab * 2 + Vector2i.ONE
