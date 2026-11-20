@@ -5,6 +5,7 @@ var suivre := false
 func _ready() -> void:
 	var lab = $Labyrinthe
 	var cam = $Camera2D
+	GameManager.vies = 3
 	$Fourmi.position = lab.position_de(lab.case_depart)
 	$Reine.position = lab.position_de(lab.case_reine)
 	$Reine.fourmi_arrivee.connect(_on_victoire)
@@ -28,6 +29,7 @@ func _ready() -> void:
 	var araignee = ARAIGNEE.instantiate()
 	araignee.labyrinthe = lab	
 	araignee.cible = $Fourmi
+	araignee.a_mordu.connect(_on_mordue)
 	araignee.position = lab.position_de(lab.case_reine)
 	add_child(araignee)
 
@@ -49,3 +51,13 @@ func _process(delta: float) -> void:
 		
 func _on_victoire() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/menus/victoire.tscn")
+
+func _on_mordue(araignee) -> void:
+	if $Fourmi.invincible:
+		return
+	GameManager.vies -= 1
+	print("Vies : ", GameManager.vies)
+	if GameManager.vies <= 0:
+		get_tree().change_scene_to_file.call_deferred("res://scenes/menus/main_menu.tscn")
+	else:
+		$Fourmi.repousser(araignee.global_position)

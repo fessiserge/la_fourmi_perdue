@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Araignee
 
+signal a_mordu(araignee)
+
 @export var vitesse := 60.0
 @export var portee_vue := 160.0
 
@@ -33,6 +35,13 @@ func voit_fourmi() -> bool:
 	$Vue.target_position = to_local(cible.global_position)
 	$Vue.force_raycast_update()
 	return $Vue.get_collider() == cible
+	
+func _ready() -> void:                            
+	$Morsure.body_entered.connect(_on_morsure)    
+												  
+func _on_morsure(body: Node2D) -> void:           
+	if body is Fourmi:                            
+		a_mordu.emit(self)                          
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

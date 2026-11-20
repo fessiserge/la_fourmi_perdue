@@ -5,6 +5,8 @@ class_name Fourmi
 @export var acceleration := 1200.0
 @export var friction := 1400.0
 
+var invincible := false
+
 func lire_direction() -> Vector2:
 	return Input.get_vector("left", "right", "up", "down")
 
@@ -17,3 +19,12 @@ func freiner(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+
+func repousser(depuis: Vector2) -> void:
+	velocity = (global_position - depuis).normalized() * 450
+	invincible = true
+	var tween := create_tween().set_loops(8)
+	tween.tween_property($Sprite2D, "modulate:a", 0.2, 0.1)
+	tween.tween_property($Sprite2D, "modulate:a", 1.0, 0.1)
+	await get_tree().create_timer(1.6).timeout
+	invincible = false

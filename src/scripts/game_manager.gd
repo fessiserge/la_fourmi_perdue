@@ -4,6 +4,7 @@ const FICHIER := "user://parametres.cfg"
 
 # 0 = Facile, 1 = Normal, 2 = Difficile
 var difficulte := 1
+var vies := 3
 
 func _ready() -> void:
 	charger()
