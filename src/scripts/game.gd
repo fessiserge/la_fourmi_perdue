@@ -1,11 +1,16 @@
 extends Node2D
 const ARAIGNEE = preload("res://scenes/araignee.tscn")
+const COEUR = preload("res://assets/sprites/atlas_fourmi/decorations/coeur.png")
 var suivre := false
-
+var temps_restant := 0.0
+var en_jeu := false
 func _ready() -> void:
 	var lab = $Labyrinthe
 	var cam = $Camera2D
 	GameManager.vies = 3
+	maj_coeurs()
+	temps_restant = [90.0, 150.0, 240.0][GameManager.difficulte]
+	maj_chrono()
 	$Fourmi.position = lab.position_de(lab.case_depart)
 	$Reine.position = lab.position_de(lab.case_reine)
 	$Reine.fourmi_arrivee.connect(_on_victoire)
@@ -32,6 +37,7 @@ func _ready() -> void:
 	araignee.a_mordu.connect(_on_mordue)
 	araignee.position = lab.position_de(lab.case_reine)
 	add_child(araignee)
+	en_jeu = true
 
 func apercu(taille: Vector2, vue: Vector2) -> void:
 	var cam = $Camera2D
@@ -49,6 +55,13 @@ func _process(delta: float) -> void:
 	if suivre:
 		$Camera2D.position = $Fourmi.position
 		
+	if en_jeu:
+		temps_restant -= delta
+		maj_chrono()
+		if temps_restant <= 0:
+			en_jeu = false
+			get_tree().change_scene_to_file.call_deferred("res://scenes/menus/main_menu.tscn")
+		
 func _on_victoire() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/menus/victoire.tscn")
 
@@ -56,8 +69,24 @@ func _on_mordue(araignee) -> void:
 	if $Fourmi.invincible:
 		return
 	GameManager.vies -= 1
+	maj_coeurs()
 	print("Vies : ", GameManager.vies)
 	if GameManager.vies <= 0:
 		get_tree().change_scene_to_file.call_deferred("res://scenes/menus/main_menu.tscn")
 	else:
 		$Fourmi.repousser(araignee.global_position)
+	
+func maj_coeurs() -> void:
+	for c in %Coeurs.get_children():
+		c.queue_free()
+	for i in GameManager.vies:
+		var t := TextureRect.new()
+		t.texture = COEUR
+		t.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		t.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		t.custom_minimum_size = Vector2(32, 32)
+		%Coeurs.add_child(t)
+
+func maj_chrono() -> void:
+	var t := int(ceil(maxf(temps_restant, 0)))
+	%Chrono.text = "%d:%02d" % [t / 60, t % 60]
