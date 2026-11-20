@@ -1,9 +1,12 @@
 extends Node2D
 const ARAIGNEE = preload("res://scenes/araignee.tscn")
 const COEUR = preload("res://assets/sprites/atlas_fourmi/decorations/coeur.png")
+const MIETTE = preload("res://scenes/miette.tscn")
 var suivre := false
 var temps_restant := 0.0
 var en_jeu := false
+var miettes_total := 0
+var miettes_ramassees := 0
 func _ready() -> void:
 	var lab = $Labyrinthe
 	var cam = $Camera2D
@@ -13,6 +16,7 @@ func _ready() -> void:
 	maj_chrono()
 	$Fourmi.position = lab.position_de(lab.case_depart)
 	$Reine.position = lab.position_de(lab.case_reine)
+	placer_miettes()
 	$Reine.fourmi_arrivee.connect(_on_victoire)
 
 	var taille := Vector2(lab.largeur * 2 + 1, lab.hauteur * 2 + 1) * 32
@@ -63,6 +67,12 @@ func _process(delta: float) -> void:
 			get_tree().change_scene_to_file.call_deferred("res://scenes/menus/defaite.tscn")
 		
 func _on_victoire() -> void:
+	if miettes_ramassees < miettes_total:
+		var tween := create_tween()
+		%Miettes.modulate = Color.RED
+		tween.tween_property(%Miettes, "modulate", Color.WHITE, 1.0)
+		return
+	en_jeu = false
 	get_tree().change_scene_to_file.call_deferred("res://scenes/menus/victoire.tscn")
 
 func _on_mordue(araignee) -> void:
@@ -90,3 +100,28 @@ func maj_coeurs() -> void:
 func maj_chrono() -> void:
 	var t := int(ceil(maxf(temps_restant, 0)))
 	%Chrono.text = "%d:%02d" % [t / 60, t % 60]
+	
+
+func placer_miettes() -> void:
+	var lab = $Labyrinthe
+	miettes_total = [3, 5, 8][GameManager.difficulte]
+	miettes_ramassees = 0
+	var prises := [lab.case_depart * 2 + Vector2i.ONE, lab.case_reine * 2 + Vector2i.ONE]
+	while prises.size() < miettes_total + 2:
+		var t: Vector2i = lab.tuile_au_hasard()
+		if t in prises:
+			continue
+		prises.append(t)
+		var m = MIETTE.instantiate()
+		m.position = lab.centre_de(t)
+		m.ramassee.connect(_on_miette_ramassee)
+		add_child(m)
+		move_child(m, $Fourmi.get_index())
+	maj_miettes()
+
+func _on_miette_ramassee() -> void:
+	miettes_ramassees += 1
+	maj_miettes()
+
+func maj_miettes() -> void:
+	%Miettes.text = "Miettes : %d / %d" % [miettes_ramassees, miettes_total]

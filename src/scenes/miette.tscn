@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://sncw4nex88io"]
+
+[ext_resource type="Script" uid="uid://c5ovb7k6m2d15" path="res://scripts/miette.gd" id="1_2cr3f"]
+[ext_resource type="Texture2D" uid="uid://hskt3jlsgum0" path="res://assets/sprites/atlas_fourmi/decorations/miette_doree.png" id="1_y4ws6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wygev"]
+
+[node name="Miette" type="Area2D" unique_id=275967024]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_2cr3f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=813612093]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_y4ws6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=254652092]
+shape = SubResource("CircleShape2D_wygev")
