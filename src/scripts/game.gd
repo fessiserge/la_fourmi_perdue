@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		maj_chrono()
 		if temps_restant <= 0:
 			en_jeu = false
-			get_tree().change_scene_to_file.call_deferred("res://scenes/menus/main_menu.tscn")
+			get_tree().change_scene_to_file.call_deferred("res://scenes/menus/defaite.tscn")
 		
 func _on_victoire() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/menus/victoire.tscn")
@@ -72,7 +72,7 @@ func _on_mordue(araignee) -> void:
 	maj_coeurs()
 	print("Vies : ", GameManager.vies)
 	if GameManager.vies <= 0:
-		get_tree().change_scene_to_file.call_deferred("res://scenes/menus/main_menu.tscn")
+		get_tree().change_scene_to_file.call_deferred("res://scenes/menus/defaite.tscn")
 	else:
 		$Fourmi.repousser(araignee.global_position)
 	
