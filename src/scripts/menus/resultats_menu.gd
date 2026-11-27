@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	Musique.jouer(preload("res://assets/music/musique_menu.mp3"))
 	%RetourButton.pressed.connect(_on_retour)
 	%RetourButton.grab_focus()
 

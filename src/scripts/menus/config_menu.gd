@@ -4,6 +4,7 @@ var bus_musique := AudioServer.get_bus_index("Musique")
 var bus_effets := AudioServer.get_bus_index("Effets")
 
 func _ready() -> void:
+	Musique.jouer(preload("res://assets/music/musique_menu.mp3"))
 	%MusiqueSlider.value = db_to_linear(AudioServer.get_bus_volume_db(bus_musique))
 	%EffetsSlider.value = db_to_linear(AudioServer.get_bus_volume_db(bus_effets))
 

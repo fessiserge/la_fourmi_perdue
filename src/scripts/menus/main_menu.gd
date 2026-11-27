@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	Musique.jouer(preload("res://assets/music/musique_menu.mp3"))
 	%JouerButton.pressed.connect(_on_jouer)
 	%ConfigButton.pressed.connect(_on_config)
 	%InstructionsButton.pressed.connect(_on_instructions)
